@@ -1,0 +1,11 @@
+1. npm install
+2. npm start
+
+Prosta aplikacja przy u¿yciu create-react-app. Funkjonalnoœci:
+1. Galeria zdjêæ kotów z flickr,
+2. Po klikniêciu jakiegoœ zdjêcia przenosimy siê na stronê zdjêæ autora,
+3. Wyszukiwarka zdjêæ,
+4. Zdjêcia kotów z najbli¿szej okolicy - nie mog³em osadziæ tego na mapach google niestety.
+
+Na ka¿dym widoku infinite scroll. Wszêdzie zaimplementowany wskaŸnik ³adowania danych. W prawie wszystkich galeriach dodana mo¿liwoœæ sortowania. Zapytania do API
+za pomoc¹ biblioteki axios. Elementy UI z semantic-ui-react.

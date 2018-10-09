@@ -1,0 +1,24 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.app-container{
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-top: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+}
+.clearfix {
+  overflow: auto;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
