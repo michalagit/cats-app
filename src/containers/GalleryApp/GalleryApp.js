@@ -85,6 +85,9 @@ class GalleryApp extends Component {
 
   scrollHandler = () => {
     let listHeight = document.getElementById('gallery-list').offsetHeight;
+    if (window.innerHeight + window.scrollY < 2500 ) {
+      this.props.showButton(false);
+    }
     if (window.innerHeight + window.scrollY > 2500 ) {
       this.props.showButton(true);
     }
