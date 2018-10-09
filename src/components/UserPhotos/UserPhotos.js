@@ -1,7 +1,7 @@
 import React from 'react';
 import ImgListElement from '../ImgList/ImgListElement'
 import LoaderComponent from '../Loader/Loader';
-import { Header, Select } from 'semantic-ui-react';
+import { Header, Select, Image, Divider } from 'semantic-ui-react';
 
 const UserPhotos = (props) => {
 
@@ -24,6 +24,8 @@ const UserPhotos = (props) => {
     return (
         <div id="user-gallery" style={componentStyles}>
             <Header as="h2" content = {props.photos[0].ownername}/>
+            <Image src={props.mainImg} centered />
+            <Divider />
             <div id="gallery-list" className="clearfix">
                 <Header as="h2" content={`Sorted by: ${selectValue[0].text}`} textAlign="center" style={{marginTop: '20px'}} />
                 <Select placeholder="Sort by..." options={props.options} className='order-dropdown' value={selectValue[0].value} onChange={props.onSortChange} />
@@ -39,7 +41,7 @@ const UserPhotos = (props) => {
                         desc={element.description._content}
                         views={element.views}
                         authorId={element.owner}
-                        clicked={() => false }/>
+                        clicked={props.onItemClick}/>
                 }) : null
                 }
                 { props.pagination? <LoaderComponent /> : null}

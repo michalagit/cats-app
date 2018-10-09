@@ -15,8 +15,14 @@ import './galleryApp.css';
 class GalleryApp extends Component {
 
 
-  imgClickedHandler = (user_id) => {
-    this.props.loadData(user_id);
+  imgClickedHandler = (user_id, img) => {
+
+    if (this.props.activePage === "User Photos") {
+      return this.props.loadData(this.props.user_id, img)
+
+    }
+
+    this.props.loadData(user_id, img);
     this.props.onMenuClick('User Photos')
 
     service.GET_GALLERY_OF(user_id, 1)
@@ -24,6 +30,8 @@ class GalleryApp extends Component {
     .catch( error => this.props.errorHandler(error))
   }
 
+
+  
   menuClickHandler = (view) => {
     switch(view){
       case('Main'):
@@ -200,10 +208,12 @@ class GalleryApp extends Component {
                       photos={this.props.photos} />
     } else if (this.props.activePage === "User Photos"){
       pageContent = <UserPhotos
+                      mainImg = {this.props.clickedImg}
                       loading={this.props.loading}
                       pagination = {this.props.pagination}
                       photos={this.props.photos} 
                       options={this.props.sortOptions}
+                      onItemClick={this.imgClickedHandler}
                       sortedBy={this.props.sortedBy}
                       onSortChange={this.sortHandle}/>
     } else if (this.props.activePage === "Search") {
@@ -224,6 +234,7 @@ class GalleryApp extends Component {
                       photos = {this.props.photos}
                       lat = {this.props.coords.lat}
                       lon = {this.props.coords.lon}
+                      onItemClick = {this.imgClickedHandler}
                       pagination = {this.props.pagination} /> 
     } else if (this.props.activePage === "Error") {
       pageContent = <ErrorMsg errorCode={this.props.error.code} errorMsg={this.props.error.msg} />
@@ -265,6 +276,7 @@ const mapStateToProps = state => {
     pagination: state.pagination,
     paginationPage: state.paginationPage,
     user_id: state.usefulData,
+    clickedImg: state.clickedImg,
     buttonDisplay: state.buttonDisplay,
     sortOptions: state.sortOptions,
     sortedBy: state.sortedBy,
@@ -278,7 +290,7 @@ const mapDispatchToProps = dispatch => {
     getGallery: (data) => dispatch({ type: 'GET_GALLERY', data }),
     errorHandler: (error)=> dispatch({ type: 'ERROR', error }),
     searchPhraseUpdate: (phrase) => (dispatch({ type: 'INPUT_UPDATE', phrase })),
-    loadData: (data) => (dispatch({ type: 'LOAD', data })),
+    loadData: (...data) => (dispatch({ type: 'LOAD', data })),
     clearGallery: () => (dispatch({ type: 'CLEAR' })),
     paginate: (bool, data) => (dispatch({ type: 'PAGINATE', bool, data })),
     showButton: (bool) => ( dispatch ({ type: 'GO_TOP_BUTTON', bool})),

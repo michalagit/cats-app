@@ -5,7 +5,7 @@ const ImgListElement = (props) => {
 
 
     return (
-        <Segment onClick={props.clicked.bind(this, props.authorId)}>
+        <Segment onClick={props.clicked.bind(this, props.authorId, props.imgSrc)}>
             <div className="img-list__element__photo">
                 <img alt="some-img" src={props.imgSrc} />
             </div>

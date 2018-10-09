@@ -4,6 +4,7 @@
 const initialState = {
     activePage: 'Main',
     usefulData: null,
+    clickedImg: '',
     photos: [],
     buttonDisplay: false,
     error: {},
@@ -179,9 +180,11 @@ const reducer = (state = initialState, action) => {
    }
    //LOADER//
    if (action.type === "LOAD"){
-       
+       if (action.data[0] === currentState.usefulData) {
+           return {...currentState, clickedImg: action.data[1]}
+       }
        return action.data? 
-        { ...currentState, loading: true, usefulData: action.data } : 
+        { ...currentState, loading: true, usefulData: action.data[0], clickedImg: action.data[1] } : 
         { ...currentState, loading: true}
    }
 

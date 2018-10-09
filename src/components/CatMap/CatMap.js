@@ -33,7 +33,7 @@ const CatMap = (props) => {
                         desc={element.description._content}
                         author = {element.ownername}
                         authorId={element.owner}
-                        clicked={() => false }/>
+                        clicked={props.onItemClick}/>
                 }) : null
                 }
                 { props.pagination? <LoaderComponent /> : null}
